@@ -1,0 +1,37 @@
+builds:
+- env:
+  - CGO_ENABLED=0
+  goos:
+  - linux
+  - darwin
+  - windows
+  - freebsd
+  goarch:
+  - amd64
+  flags:
+  - -trimpath
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}"
+nfpms:
+- file_name_template: '{{ .ProjectName }}_{{ .Tag }}_{{ .Arch }}'
+  homepage: https://github.com/hbagdi/y2j
+  description: YAML to JSON converter
+  maintainer: Harry Bagdi <harrybagdi@gmail.com>
+  license: Apache License v2.0
+  formats:
+  - deb
+  - rpm
+brews:
+- tap:
+    owner: hbagdi
+    name: homebrew-tap
+  commit_author:
+    name: Harry Bagdi
+    email: harrybagdi@gmail.com
+  homepage: "https://github.com/hbagdi/y2j"
+  description: YAML to JSON converter
+  skip_upload: true
+  test: |
+      system "#{bin}/y2j", "-help"

@@ -17,7 +17,6 @@ func die(format string, a ...interface{}) {
 	os.Exit(1)
 }
 
-
 func main() {
 	flag.Parse()
 	if *help {
